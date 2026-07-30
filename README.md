@@ -1,155 +1,100 @@
-# AI Engineering Journey
+# AI-Powered Web Developer Roadmap
 
-> A structured learning repository focused on building practical AI engineering skills for modern software development.
+> A complete guide for becoming a professional web developer who can create real market value with AI, automation, agents, integrations, and production-ready intelligent applications.
 
-## Overview
+## Phase Overview Table
 
-This repository documents my journey toward becoming an AI-enabled software engineer. The focus is not only on understanding AI concepts, but also on building real-world applications using Large Language Models (LLMs), Retrieval-Augmented Generation (RAG), function calling, agents, and production-ready AI systems.
+| Phase | Title                                                                               | Short Description                                                     |
+| ----- | ----------------------------------------------------------------------------------- | --------------------------------------------------------------------- |
+| 01    | [Foundations and Engineering Mindset](01-foundations/README.md)                     | Build a strong software engineering base before applying AI concepts. |
+| 02    | [LLM Fundamentals and Prompt Engineering](02-llm-prompting/README.md)               | Learn how LLMs work and how to prompt them effectively.               |
+| 03    | [AI API Integration](03-api-integration/README.md)                                  | Connect AI providers like OpenAI, Anthropic, and Gemini to apps.      |
+| 04    | [AI-Powered Web Interfaces](04-ai-web-interfaces/README.md)                         | Create user-friendly AI experiences for the web.                      |
+| 05    | [RAG and Knowledge Systems](05-rag-systems/README.md)                               | Build assistants that answer questions using your own data.           |
+| 06    | [AI Agents and Tool Use](06-ai-agents/README.md)                                    | Learn how agents use tools and make multi-step decisions.             |
+| 07    | [Automation and Workflow Design](07-automation-workflows/README.md)                 | Use AI to automate real business processes.                           |
+| 08    | [Production AI Engineering](08-production-ai/README.md)                             | Make AI features reliable, scalable, and production-ready.            |
+| 09    | [Security, Evaluation, and Trustworthiness](09-security-evaluation/README.md)       | Build safe, measurable, and trustworthy AI systems.                   |
+| 10    | [Portfolio, Career Positioning, and Business Impact](10-portfolio-career/README.md) | Turn your skills into portfolio proof and career growth.              |
 
-This project is designed to serve two purposes:
+## Phase 01 — Foundations and Engineering Mindset
 
-- A personal learning log for tracking growth in AI engineering
-- A portfolio-style repository that shows recruiters and collaborators what I am learning and building
+- [x] Learn JavaScript/TypeScript, backend basics, APIs, databases, and Git
+- [ ] Understand AI, ML, Deep Learning, and Generative AI
+- [ ] Learn the difference between traditional software and AI-enhanced software
+- [ ] Build the mindset to connect technology with business problems
 
----
+`Deep Dive →` [01-foundations](01-foundations/README.md)
 
-## What I Am Learning
+## Phase 02 — LLM Fundamentals and Prompt Engineering
 
-I am building a strong foundation in the following areas:
+- [ ] Understand transformers, tokens, embeddings, and context windows
+- [ ] Learn prompt patterns such as zero-shot, few-shot, role prompting, and structured output
+- [ ] Practice writing prompts that produce reliable and useful responses
 
-- AI fundamentals
-  - What LLMs are
-  - Transformers and how they work
-  - Tokens, embeddings, and context windows
-  - Hallucinations and prompt behavior
+`Deep Dive →` [02-llm-prompting](02-llm-prompting/README.md)
 
-- Prompt engineering
-  - Zero-shot and few-shot prompting
-  - Structured outputs
-  - Role-based and planner-style prompts
+## Phase 03 — AI API Integration
 
-- AI integration
-  - OpenAI, Anthropic, and other LLM APIs
-  - Streaming responses
-  - Function calling and tool use
+- [ ] Integrate OpenAI, Anthropic, Gemini, and other providers
+- [ ] Handle streaming, error handling, retries, and model switching
+- [ ] Build simple AI chat apps and API-powered experiences
 
-- RAG systems
-  - Chunking strategies
-  - Embeddings and similarity search
-  - Vector databases
-  - Context injection for better answers
+`Deep Dive →` [03-api-integration](03-api-integration/README.md)
 
-- AI agents and automation
-  - Tool-using agents
-  - Multi-step workflows
-  - Business process automation
+## Phase 04 — AI-Powered Web Interfaces
 
-- Production AI
-  - Security and prompt injection awareness
-  - Evaluation and quality measurement
-  - Cost optimization and observability
+- [ ] Build chat UIs, real-time streaming interfaces, and AI forms
+- [ ] Connect frontend apps with AI backends
+- [ ] Improve UX for prompts, feedback, and result visualization
 
----
+`Deep Dive →` [04-ai-web-interfaces](04-ai-web-interfaces/README.md)
 
-## What I Am Building
+## Phase 05 — RAG and Knowledge Systems
 
-The long-term goal is to move from learning concepts to shipping useful AI-powered applications. The projects I am preparing to build and document include:
+- [ ] Learn embeddings, chunking, indexing, and vector search
+- [ ] Build document Q&A systems, knowledge bases, and internal search assistants
+- [ ] Understand why RAG is important for real business use cases
 
-- AI chat applications
-- Prompt playgrounds
-- AI blog generators
-- Documentation chat assistants
-- PDF knowledge-base systems
-- Customer support agents
-- AI email and content automation tools
-- Resume and document analysis tools
+`Deep Dive →` [05-rag-systems](05-rag-systems/README.md)
 
-These projects will help demonstrate practical experience with LLMs, APIs, retrieval systems, and workflow automation.
+## Phase 06 — AI Agents and Tool Use
 
----
+- [ ] Learn function calling and tool use
+- [ ] Build agents that can retrieve information, call APIs, and make decisions
+- [ ] Understand when agents are useful and when simpler workflows are better
 
-## Skills Checklist
+`Deep Dive →` [06-ai-agents](06-ai-agents/README.md)
 
-### Foundation
+## Phase 07 — Automation and Workflow Design
 
-- [x] Understand the purpose of this learning journey
-- [ ] Learn LLM fundamentals
-- [ ] Understand tokenization and embeddings
-- [ ] Learn prompt engineering basics
-- [ ] Study vector similarity and semantic search
+- [ ] Connect systems with webhooks, APIs, and automation platforms
+- [ ] Design workflows for email, CRM, support, and productivity tasks
+- [ ] Build solutions that save time and reduce manual effort
 
-### Application Development
+`Deep Dive →` [07-automation-workflows](07-automation-workflows/README.md)
 
-- [ ] Integrate OpenAI or Anthropic APIs
-- [ ] Build a basic AI chat interface
-- [ ] Implement structured outputs
-- [ ] Create a RAG-based assistant
+## Phase 08 — Production AI Engineering
 
-### Advanced AI Engineering
+- [ ] Learn caching, queues, background jobs, streaming, logging, and monitoring
+- [ ] Optimize for latency, cost, and maintainability
+- [ ] Build AI features that can survive real-world usage
 
-- [ ] Implement function calling / tool use
-- [ ] Build an AI agent workflow
-- [ ] Explore vector databases such as pgvector, Chroma, or Qdrant
-- [ ] Learn evaluation, security, and observability for AI systems
+`Deep Dive →` [08-production-ai](08-production-ai/README.md)
 
----
+## Phase 09 — Security, Evaluation, and Trustworthiness
 
-## Portfolio-Ready Focus
+- [ ] Learn prompt injection, data leakage, moderation, and PII protection
+- [ ] Evaluate quality using accuracy, grounding, relevance, and consistency
+- [ ] Make AI systems safer for users and organizations
 
-This repository is intended to show that I am developing the following capabilities:
+`Deep Dive →` [09-security-evaluation](09-security-evaluation/README.md)
 
-- Understanding how modern AI systems work
-- Integrating LLMs into software applications
-- Building retrieval-based assistants and knowledge systems
-- Designing AI workflows and agent-based solutions
-- Thinking about production concerns such as reliability, security, and cost
+## Phase 10 — Portfolio, Career Positioning, and Business Impact
 
-A recruiter or technical reviewer should be able to see that I am progressing from AI theory toward applied engineering.
+- [ ] Create portfolio projects that solve real problems
+- [ ] Write blog posts, documentation, and case studies
+- [ ] Position yourself as an AI-enabled web developer with product thinking
 
----
+`Deep Dive →` [10-portfolio-career](10-portfolio-career/README.md)
 
-## Repository Guide
-
-This repository contains the following core learning documents:
-
-- [AI_ENGINEERING_GUIDE.md](AI_ENGINEERING_GUIDE.md) — a broader roadmap for AI engineering learning
-- [generative-ai.md](generative-ai.md) — a focused roadmap for LLMs, RAG, agents, and GenAI concepts
-
-The repository is organized into the following folders:
-
-- [docs](docs) — structured study notes and reference documentation
-- [notes](notes) — daily learning observations and summaries
-- [prompts](prompts) — prompt examples and reusable templates
-- [examples](examples) — small example implementations
-- [mini-projects](mini-projects) — portfolio-style mini projects
-
-This structure is intended to support steady learning, documentation, and project development over time.
-
----
-
-## Current Direction
-
-My current focus is on:
-
-1. Building a strong conceptual foundation in AI and LLMs
-2. Learning practical implementation patterns for AI applications
-3. Creating small but meaningful projects that can be shown in a portfolio
-4. Connecting AI skills with real software engineering workflows
-
----
-
-## Career Positioning
-
-By continuing this journey, I aim to become someone who can:
-
-- Explain how LLMs and transformers work
-- Integrate AI APIs into applications
-- Build intelligent assistants with retrieval and context
-- Create AI-powered workflows and agents
-- Deliver AI features with awareness of production constraints
-
----
-
-## Status
-
-This repository is currently a structured learning and portfolio foundation. I will continue to add notes, examples, mini-projects, and completed implementations as I progress.
