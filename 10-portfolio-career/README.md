@@ -1,4 +1,4 @@
-# Phase 10 — Portfolio, Career Positioning, and Business Impact
+# Phase 10 — Portfolio, Career and Business Impact
 
 ## Goal
 
