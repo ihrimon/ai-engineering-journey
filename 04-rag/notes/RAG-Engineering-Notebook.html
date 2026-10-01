@@ -1,0 +1,958 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RAG Engineering Notebook</title>
+<style>
+  :root{
+    --paper:#eef2f6;
+    --paper-card:#ffffff;
+    --ink:#16233a;
+    --ink-soft:#4d5c74;
+    --primary:#1d4d8f;
+    --primary-soft:#e2ebf5;
+    --accent:#b9812c;
+    --accent-soft:#f6e6c8;
+    --line:#c7d3e0;
+    --grid: rgba(29,77,143,0.07);
+    --code-bg:#101c2e;
+    --code-ink:#dce8f7;
+    --shadow: 0 1px 2px rgba(16,28,46,0.06), 0 8px 24px -12px rgba(16,28,46,0.18);
+  }
+
+  *{ box-sizing:border-box; }
+  html{ background:var(--paper); }
+  body{
+    margin:0;
+    background:
+      repeating-linear-gradient(0deg, var(--grid) 0 1px, transparent 1px 32px),
+      repeating-linear-gradient(90deg, var(--grid) 0 1px, transparent 1px 32px),
+      var(--paper);
+    color:var(--ink);
+    font-family:-apple-system,"Segoe UI","Noto Sans Bengali","Nirmala UI",sans-serif;
+    line-height:1.75;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,h4{
+    font-family:Georgia,Cambria,"Iowan Old Style","Palatino Linotype","Nirmala UI","Noto Sans Bengali",serif;
+    color:var(--ink);
+    margin:0;
+  }
+  p{ margin:0 0 1em; max-width:74ch; }
+  a{ color:var(--primary); }
+
+  .page{
+    max-width:840px;
+    margin:0 auto;
+    padding:56px 28px 96px;
+  }
+
+  /* ---------- Cover ---------- */
+  .cover{
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    position:relative;
+    break-after:page; page-break-after:always;
+  }
+  .cover-inner{ max-width:640px; }
+  .cover-kicker{
+    font-family:ui-monospace,"Cascadia Mono","Consolas","SFMono-Regular",monospace;
+    font-size:.8rem; letter-spacing:.14em; text-transform:uppercase;
+    color:var(--primary); margin-bottom:18px; display:flex; gap:10px; align-items:center;
+  }
+  .cover-kicker .dot{ width:7px; height:7px; border-radius:50%; background:var(--accent); }
+  .cover h1{
+    font-size:clamp(2.4rem, 6vw, 3.6rem);
+    line-height:1.08;
+    margin-bottom:14px;
+  }
+  .cover .subtitle{
+    font-size:1.15rem; color:var(--ink-soft); max-width:56ch; margin-bottom:36px;
+  }
+  .cover-meta{
+    display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:18px 40px;
+    border-top:1px solid var(--line); padding-top:22px; max-width:520px;
+  }
+  .cover-meta dt{
+    font-family:ui-monospace,monospace; font-size:.72rem; letter-spacing:.08em;
+    text-transform:uppercase; color:var(--ink-soft); margin-bottom:4px;
+  }
+  .cover-meta dd{ margin:0; font-size:.98rem; }
+
+  /* ---------- Table of contents ---------- */
+  .toc{ break-after:page; page-break-after:always; }
+  .toc h2{ font-size:1.9rem; margin-bottom:8px; }
+  .toc .toc-sub{ color:var(--ink-soft); margin-bottom:32px; }
+  .toc-list{ list-style:none; margin:0; padding:0; }
+  .toc-list li{
+    padding:10px 0; border-bottom:1px dotted var(--line);
+  }
+  .toc-list a{
+    display:flex; align-items:baseline; gap:16px;
+    text-decoration:none; color:var(--ink);
+  }
+  .toc-list a:hover{ color:var(--primary); }
+  .toc-list .n{
+    font-family:ui-monospace,monospace; color:var(--accent); font-weight:600;
+    min-width:2.4em; flex:none;
+  }
+  .toc-list .t{ flex:1; }
+  .toc-part{
+    font-family:ui-monospace,monospace; font-size:.75rem; letter-spacing:.1em;
+    text-transform:uppercase; color:var(--ink-soft); margin:26px 0 4px;
+  }
+
+  /* ---------- Sections ---------- */
+  .section{
+    break-before:page; page-break-before:always;
+    padding-top:20px;
+  }
+  .section-head{
+    display:flex; gap:20px; align-items:flex-start;
+    margin-bottom:20px; padding-bottom:14px; border-bottom:2px solid var(--primary);
+  }
+  .section-head .num{
+    font-family:Georgia,serif; font-size:3.2rem; line-height:1; color:var(--primary);
+    font-weight:700; min-width:1.4em;
+  }
+  .section-head h2{ font-size:1.7rem; line-height:1.25; padding-top:6px; }
+  .section-kicker{
+    font-family:ui-monospace,monospace; font-size:.72rem; letter-spacing:.12em;
+    text-transform:uppercase; color:var(--accent); margin-bottom:6px; display:block;
+  }
+  h3.subhead{
+    font-size:1.2rem; margin:34px 0 12px; padding-bottom:8px; border-bottom:1px solid var(--line);
+    color:var(--primary);
+  }
+  h4.microhead{
+    font-size:.78rem; letter-spacing:.1em; text-transform:uppercase;
+    color:var(--ink-soft); margin:0 0 8px; font-family:ui-monospace,monospace;
+  }
+  .lead{ font-size:1.12rem; color:var(--ink-soft); max-width:70ch; }
+
+  /* ---------- Content blocks ---------- */
+  .callout{
+    border-left:3px solid var(--accent);
+    background:var(--accent-soft);
+    padding:14px 20px; margin:20px 0; border-radius:2px;
+    font-style:italic; color:var(--ink);
+  }
+  .card{
+    background:var(--paper-card); border:1px solid var(--line); border-radius:8px;
+    padding:18px 22px; margin:20px 0; box-shadow:var(--shadow);
+    break-inside:avoid; page-break-inside:avoid;
+  }
+  .card ul, .card ol{ margin:0; padding-left:1.3em; }
+  .card li{ margin-bottom:6px; }
+  .card li:last-child{ margin-bottom:0; }
+
+  .tag{
+    display:inline-block; font-family:ui-monospace,monospace; font-size:.7rem;
+    letter-spacing:.08em; text-transform:uppercase; padding:3px 10px; border-radius:999px;
+    background:var(--primary-soft); color:var(--primary); margin-bottom:10px;
+  }
+  .tag.gold{ background:var(--accent-soft); color:var(--accent); }
+
+  pre.example{
+    background:var(--code-bg); color:var(--code-ink);
+    font-family:ui-monospace,"Cascadia Mono","Consolas",monospace; font-size:.86rem;
+    padding:16px 18px; border-radius:8px; overflow-x:auto; margin:18px 0;
+    break-inside:avoid; page-break-inside:avoid; line-height:1.6;
+  }
+
+  .fig{
+    background:var(--paper-card); border:1px solid var(--line); border-radius:8px;
+    padding:14px; margin:16px 0; box-shadow:var(--shadow);
+    break-inside:avoid; page-break-inside:avoid;
+  }
+  .fig .mermaid{ display:flex; justify-content:center; }
+  .fig .mermaid svg{ max-width:85%; height:auto; display:block; margin:0 auto; }
+  .fig.fig-tall .mermaid svg{ max-width:56%; }
+  .fig .mermaid text{ font-size:12.5px !important; }
+  .fig-cap{
+    font-family:ui-monospace,monospace; font-size:.76rem; color:var(--ink-soft);
+    margin-top:8px; padding-top:8px; border-top:1px dashed var(--line);
+  }
+  .fig-cap b{ color:var(--primary); }
+
+  .compare{
+    display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:16px; margin:20px 0;
+  }
+  @media (max-width:640px){ .compare{ grid-template-columns:1fr; } }
+  .compare .card{ margin:0; }
+  .compare .card.good{ border-top:3px solid #2f8f5b; }
+  .compare .card.bad{ border-top:3px solid #b5482f; }
+  .compare h4{ margin:0 0 10px; font-size:.95rem; }
+
+  .overflow-x{ overflow-x:auto; }
+
+  footer.endmark{
+    margin-top:60px; padding-top:20px; border-top:2px solid var(--primary);
+    display:flex; justify-content:space-between; align-items:center;
+    font-family:ui-monospace,monospace; font-size:.75rem; color:var(--ink-soft);
+  }
+
+  @media print{
+    body{ background:var(--paper); -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+    .page{ padding:0 6mm; }
+  }
+  @page{ size:A4; margin:15mm 15mm; }
+</style>
+</head>
+<body>
+
+<div class="page">
+
+  <!-- ============ COVER ============ -->
+  <section class="cover">
+    <div class="cover-inner">
+      <div class="cover-kicker"><span class="dot"></span>AI Engineering Journey &nbsp;/&nbsp; Field Notebook</div>
+      <h1>RAG Engineering<br>Notebook</h1>
+      <p class="subtitle">Retrieval-Augmented Generation — architecture, pipeline stages, chunking strategies, এবং RAG বনাম Fine-Tuning নিয়ে একটি সম্পূর্ণ engineering report, বাংলা ব্যাখ্যাসহ।</p>
+      <dl class="cover-meta">
+        <div><dt>Document</dt><dd>RAG (Retrieval-Augmented Generation) Report</dd></div>
+        <div><dt>Prepared</dt><dd>14 August 2026</dd></div>
+        <div><dt>Sections</dt><dd>19 — Concept থেকে Reflection পর্যন্ত</dd></div>
+        <div><dt>Language</dt><dd>বাংলা ব্যাখ্যা + English technical terms</dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <!-- ============ TOC ============ -->
+  <section class="toc">
+    <h2>সূচিপত্র</h2>
+    <p class="toc-sub">Table of Contents</p>
+
+    <ul class="toc-list">
+      <li><a href="#s1"><span class="n">01</span><span class="t">RAG আসলে কী?</span></a></li>
+      <li><a href="#s2"><span class="n">02</span><span class="t">কেন RAG দরকার?</span></a></li>
+      <li><a href="#s3"><span class="n">03</span><span class="t">RAG-এর মূল Architecture</span></a></li>
+      <li><a href="#s4"><span class="n">04</span><span class="t">RAG-এর দুইটি প্রধান Phase</span></a></li>
+    </ul>
+
+    <ul class="toc-list">
+      <li><a href="#s5"><span class="n">05</span><span class="t">RAG Process — সম্পূর্ণ পদক্ষেপ</span></a></li>
+      <li><a href="#s6"><span class="n">06</span><span class="t">Step 1 — Data Ingestion</span></a></li>
+      <li><a href="#s7"><span class="n">07</span><span class="t">Step 2 — PDF Parsing</span></a></li>
+      <li><a href="#s8"><span class="n">08</span><span class="t">Step 3 — Chunking</span></a></li>
+      <li><a href="#s9"><span class="n">09</span><span class="t">কেন Chunking গুরুত্বপূর্ণ?</span></a></li>
+      <li><a href="#s10"><span class="n">10</span><span class="t">Chunking Strategies</span></a></li>
+      <li><a href="#s11"><span class="n">11</span><span class="t">Step 4 — Embedding</span></a></li>
+      <li><a href="#s12"><span class="n">12</span><span class="t">Embedding কেন প্রয়োজন?</span></a></li>
+      <li><a href="#s13"><span class="n">13</span><span class="t">Vector Storage</span></a></li>
+    </ul>
+
+    <ul class="toc-list">
+      <li><a href="#s14"><span class="n">14</span><span class="t">Retrieval</span></a></li>
+      <li><a href="#s15"><span class="n">15</span><span class="t">Top-K Retrieval</span></a></li>
+      <li><a href="#s16"><span class="n">16</span><span class="t">Step 5 — Augmentation</span></a></li>
+      <li><a href="#s17"><span class="n">17</span><span class="t">Step 6 — Generation</span></a></li>
+    </ul>
+
+    <ul class="toc-list">
+      <li><a href="#s18"><span class="n">18</span><span class="t">RAG বনাম Fine-Tuning</span></a></li>
+      <li><a href="#s19"><span class="n">19</span><span class="t">আমি RAG সম্পর্কে যা বুঝেছি</span></a></li>
+    </ul>
+  </section>
+
+  <!-- ============ SECTION 1 ============ -->
+  <section class="section" id="s1">
+    <div class="section-head">
+      <div class="num">01</div>
+      <div><span class="section-kicker">Core Concept</span><h2>RAG আসলে কী?</h2></div>
+    </div>
+
+    <p class="lead">RAG হলো এমন একটি architecture যেখানে একটি Large Language Model (LLM) উত্তর তৈরি করার আগে external knowledge source থেকে প্রয়োজনীয় তথ্য retrieve করে এবং সেই তথ্যকে context হিসেবে ব্যবহার করে উত্তর তৈরি করে।</p>
+
+    <h3 class="subhead">Example</h3>
+    <p>ধরা যাক একটি কোম্পানির knowledge base-এ আছে:</p>
+    <div class="card">
+      <ul>
+        <li>employee-handbook.pdf</li>
+        <li>company-policy.pdf</li>
+        <li>product-documentation.pdf</li>
+        <li>pricing.pdf</li>
+      </ul>
+    </div>
+
+    <p>User প্রশ্ন করল:</p>
+    <div class="callout">"How many annual leave days do employees receive?"</div>
+
+    <p>RAG system:</p>
+    <div class="fig">
+      <pre class="mermaid">
+flowchart TD
+    A["User Question"] --> B["Search Company Knowledge Base"]
+    B --> C["Find Relevant Section"]
+    C --> D["Retrieve Relevant Chunk"]
+    D --> E["Send Context + Question to LLM"]
+    E --> F["Generate Answer"]
+      </pre>
+      <div class="fig-cap"><b>FIG 1.1</b> — একটি সাধারণ RAG request flow: প্রশ্ন থেকে উত্তর পর্যন্ত।</div>
+    </div>
+
+    <p>সম্ভাব্য answer:</p>
+    <div class="callout">"According to the employee handbook, employees receive 20 days of annual leave per year."</div>
+
+    <p>এখানে LLM-এর মূল কাজ হলো retrieved information ব্যবহার করে উত্তর তৈরি করা।</p>
+  </section>
+
+  <!-- ============ SECTION 2 ============ -->
+  <section class="section" id="s2">
+    <div class="section-head">
+      <div class="num">02</div>
+      <div><span class="section-kicker">Motivation</span><h2>কেন RAG দরকার?</h2></div>
+    </div>
+
+    <p class="lead">একটি সাধারণ LLM অনেক ধরনের knowledge ধারণ করতে পারে, কিন্তু application-specific knowledge-এর ক্ষেত্রে সীমাবদ্ধতা থাকে।</p>
+
+    <h3 class="subhead">2.1 &nbsp;Private / Proprietary Data</h3>
+    <p>একটি company's private information সাধারণত public LLM knowledge-এর অংশ নয়। যেমন:</p>
+    <div class="card">
+      <ul>
+        <li>Internal HR Policy</li>
+        <li>Internal API Documentation</li>
+        <li>Customer Support Knowledge Base</li>
+        <li>Company Pricing</li>
+        <li>Internal SOP</li>
+        <li>Private Product Documentation</li>
+      </ul>
+    </div>
+    <p>RAG ব্যবহার করে এই information external knowledge base-এ রাখা যায় এবং প্রয়োজন অনুযায়ী retrieve করা যায়।</p>
+
+    <h3 class="subhead">2.2 &nbsp;Frequently Changing Information</h3>
+    <p>কিছু information নিয়মিত পরিবর্তিত হয়। যেমন:</p>
+    <div class="card">
+      <ul>
+        <li>Product Price</li>
+        <li>Inventory</li>
+        <li>Company Policy</li>
+        <li>Product Documentation</li>
+        <li>FAQ</li>
+        <li>Service Availability</li>
+      </ul>
+    </div>
+
+    <h3 class="subhead">2.3 &nbsp;Grounded Answers</h3>
+    <p>LLM কখনো এমন information generate করতে পারে যার কোনো বাস্তব source নেই। RAG-এর মাধ্যমে relevant context LLM-কে দেওয়া যায়।</p>
+    <div class="fig">
+      <pre class="mermaid">
+flowchart TD
+    subgraph With_RAG["With RAG"]
+        B1["Question"] --> B2["Retrieve Relevant Context"]
+        B2 --> B3["Context + Question"]
+        B3 --> B4["LLM"]
+        B4 --> B5["Answer"]
+    end
+      </pre>
+      <div class="fig-cap"><b>FIG 2.1</b> — RAG থাকলে উত্তর দেওয়ার আগে relevant context যুক্ত হয়।</div>
+    </div>
+    <div class="callout"><strong>RAG hallucination সম্পূর্ণভাবে বন্ধ করে না।</strong> যদি retrieval ভুল হয়, তাহলে LLM ভুল context-এর ওপর ভিত্তি করে ভুল উত্তর দিতে পারে।</div>
+
+    <h3 class="subhead">2.4 &nbsp;Source-based Answers</h3>
+    <p>একটি ভালো RAG application answer-এর সাথে source information-ও দিতে পারে। Example:</p>
+    <pre class="example">Answer:
+Employees receive 20 days of annual leave per year.
+
+Source:
+employee-handbook.pdf
+Page: 12</pre>
+    <p>এটি enterprise application-এর জন্য গুরুত্বপূর্ণ, কারণ user answer-এর source verify করতে পারে।</p>
+  </section>
+
+  <!-- ============ SECTION 3 ============ -->
+  <section class="section" id="s3">
+    <div class="section-head">
+      <div class="num">03</div>
+      <div><span class="section-kicker">Architecture</span><h2>RAG-এর মূল Architecture</h2></div>
+    </div>
+
+    <p class="lead">RAG architecture-কে মূলত দুইটি flow হিসেবে বোঝা যায়।</p>
+
+    <div class="fig fig-tall">
+      <div class="overflow-x">
+      <pre class="mermaid">
+flowchart TD
+    KS["KNOWLEDGE SOURCES"] --> DP["Document Parsing"]
+    DP --> CH["Chunking"]
+    CH --> EM["Embedding"]
+    EM --> VS["Vector Storage"]
+    VS --> IR["Information Retrieval"]
+    UQ["User Query"] --> QE["Query Embedding"]
+    QE --> IR
+    IR --> RC["Relevant Chunks"]
+    RC --> CC["Context Construction"]
+    CC --> LLM["LLM"]
+    LLM --> FA["Final Answer"]
+      </pre>
+      </div>
+      <div class="fig-cap"><b>FIG 3.1</b> — Indexing flow (উপরে) এবং Query flow (নিচে) একসাথে মিলিত হয়ে Final Answer তৈরি করে।</div>
+    </div>
+  </section>
+
+  <!-- ============ SECTION 4 ============ -->
+  <section class="section" id="s4">
+    <div class="section-head">
+      <div class="num">04</div>
+      <div><span class="section-kicker">Two Phases</span><h2>RAG-এর দুইটি প্রধান Phase</h2></div>
+    </div>
+
+    <h3 class="subhead">Phase A — Indexing / Ingestion</h3>
+    <p>Indexing phase-এর উদ্দেশ্য হলো raw knowledge source-কে এমনভাবে প্রস্তুত করা যাতে পরবর্তীতে দ্রুত এবং relevant information retrieve করা যায়।</p>
+
+    <div class="fig">
+      <pre class="mermaid">
+flowchart TD
+    A["Documents"] --> B["Parse"]
+    B --> C["Clean"]
+    C --> D["Chunk"]
+    D --> E["Embed"]
+    E --> F["Store"]
+      </pre>
+      <div class="fig-cap"><b>FIG 4.1</b> — Indexing-এর সাধারণ flow।</div>
+    </div>
+
+    <div class="fig">
+      <pre class="mermaid">
+flowchart TD
+    A["employee-handbook.pdf"] --> B["Extract Text"]
+    B --> C["Create Chunks"]
+    C --> D["Generate Embeddings"]
+    D --> E["Store Embeddings + Metadata"]
+      </pre>
+      <div class="fig-cap"><b>FIG 4.2</b> — বাস্তব উদাহরণ: employee-handbook.pdf ইনডেক্সিং।</div>
+    </div>
+    <p>এই phase সাধারণত document প্রথমবার system-এ যোগ করার সময় অথবা document update হলে চলে।</p>
+
+    <h3 class="subhead">Phase B — Retrieval + Generation</h3>
+    <p>User যখন প্রশ্ন করে, তখন query phase শুরু হয়।</p>
+    <div class="fig">
+      <pre class="mermaid">
+flowchart TD
+    A["User Question"] --> B["Query Processing"]
+    B --> C["Query Embedding"]
+    C --> D["Search Knowledge Base"]
+    D --> E["Retrieve Relevant Chunks"]
+    E --> F["Build Context"]
+    F --> G["Context + Question -> LLM"]
+    G --> H["Generate Answer"]
+      </pre>
+      <div class="fig-cap"><b>FIG 4.3</b> — Query phase-এর flow।</div>
+    </div>
+    <div class="callout">User-এর প্রশ্নের উত্তর দেওয়ার জন্য knowledge base-এর কোন অংশ প্রয়োজন তা খুঁজে বের করা — এখানে মূল কাজ।</div>
+  </section>
+
+  <!-- ============ SECTION 5 ============ -->
+  <section class="section" id="s5">
+    <div class="section-head">
+      <div class="num">05</div>
+      <div><span class="section-kicker">End-to-End</span><h2>RAG Process</h2></div>
+    </div>
+    <p class="lead">RAG-এর complete process কয়েকটি ধাপে বোঝা যায়। এখানে Retrieval-কে আলাদা করে বোঝা গুরুত্বপূর্ণ, কারণ এটি RAG-এর core component।</p>
+    <div class="fig">
+      <div class="overflow-x">
+      <pre class="mermaid">
+flowchart TD
+    S1["Step 1 - Data Ingestion"] --> S2["Step 2 - PDF Parsing"]
+    S2 --> S3["Step 3 - Chunking"]
+    S3 --> S4["Step 4 - Embedding"]
+    S4 --> S5["Step 5 - Retrieval"]
+    S5 --> S6["Step 6 - Augmentation"]
+    S6 --> S7["Step 7 - Generation"]
+      </pre>
+      </div>
+      <div class="fig-cap"><b>FIG 5.1</b> — সাত ধাপের সম্পূর্ণ RAG pipeline; পরবর্তী সেকশনগুলোতে প্রতিটি ধাপ আলাদাভাবে ব্যাখ্যা করা হয়েছে।</div>
+    </div>
+  </section>
+
+  <!-- ============ SECTION 6 ============ -->
+  <section class="section" id="s6">
+    <div class="section-head">
+      <div class="num">06</div>
+      <div><span class="section-kicker">Step 1</span><h2>Data Ingestion</h2></div>
+    </div>
+    <p class="lead">Data ingestion বলতে বিভিন্ন knowledge source-কে RAG system-এর মধ্যে আনা এবং processing-এর জন্য প্রস্তুত করাকে বোঝায়।</p>
+    <p>Possible sources:</p>
+    <div class="card">
+      <ul>
+        <li>PDF</li><li>DOCX</li><li>TXT</li><li>Markdown</li><li>HTML</li>
+        <li>Web Pages</li><li>Database</li><li>API</li><li>Google Drive</li><li>Notion</li><li>GitHub</li><li>Images</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ============ SECTION 7 ============ -->
+  <section class="section" id="s7">
+    <div class="section-head">
+      <div class="num">07</div>
+      <div><span class="section-kicker">Step 2</span><h2>PDF Parsing</h2></div>
+    </div>
+    <p class="lead">PDF parsing হলো PDF file থেকে usable information বের করে আনা। একটি PDF-এর মধ্যে থাকতে পারে:</p>
+    <div class="card">
+      <ul>
+        <li>Text</li><li>Tables</li><li>Images</li><li>Headers</li>
+        <li>Footers</li><li>Page Numbers</li><li>Formatting</li><li>Layout Information</li>
+      </ul>
+    </div>
+
+    <p>Basic parsing flow:</p>
+    <div class="fig">
+      <pre class="mermaid">
+flowchart TD
+    A["PDF"] --> B["PDF Parser"]
+    B --> C["Extracted Text + Metadata"]
+      </pre>
+      <div class="fig-cap"><b>FIG 7.1</b> — PDF parsing-এর basic flow।</div>
+    </div>
+
+    <p>Example output:</p>
+    <pre class="example">{
+  "text": "Employees are entitled to 20 days of annual leave...",
+  "page": 12,
+  "document": "employee-handbook.pdf"
+}</pre>
+    <p>Parsing-এর output পরবর্তী ধাপের input হিসেবে ব্যবহার করা হয়।</p>
+  </section>
+
+  <!-- ============ SECTION 8 ============ -->
+  <section class="section" id="s8">
+    <div class="section-head">
+      <div class="num">08</div>
+      <div><span class="section-kicker">Step 3</span><h2>Chunking</h2></div>
+    </div>
+    <p class="lead">একটি সম্পূর্ণ document সাধারণত retrieval-এর জন্য একটিমাত্র বড় block হিসেবে ব্যবহার করা হয় না। Document-কে ছোট ছোট অংশে ভাগ করা হয়। এই অংশগুলোকে <strong>chunk</strong> বলা হয়।</p>
+
+    <div class="fig">
+      <pre class="mermaid">
+flowchart TD
+    D["Document"] --> C1["Chunk 1"]
+    D --> C2["Chunk 2"]
+    D --> C3["Chunk 3"]
+    D --> C4["Chunk 4"]
+    D --> CN["... Chunk N"]
+      </pre>
+      <div class="fig-cap"><b>FIG 8.1</b> — একটি document একাধিক chunk-এ ভাগ হয়।</div>
+    </div>
+
+    <div class="card">
+      <h4 class="microhead">Chunking-এর মূল উদ্দেশ্য</h4>
+      <ul>
+        <li>Information-কে manageable করা</li>
+        <li>Relevant অংশ retrieve করা</li>
+        <li>Context quality বজায় রাখা</li>
+        <li>Unnecessary token usage কমানো</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ============ SECTION 9 ============ -->
+  <section class="section" id="s9">
+    <div class="section-head">
+      <div class="num">09</div>
+      <div><span class="section-kicker">Why It Matters</span><h2>কেন Chunking গুরুত্বপূর্ণ?</h2></div>
+    </div>
+    <p class="lead">ধরা যাক একটি PDF-এ 100 pages আছে। User প্রশ্ন করল:</p>
+    <div class="callout">"How many annual leave days are available?"</div>
+    <p>এখানে পুরো 100 pages LLM-এর কাছে পাঠানোর প্রয়োজন নেই। Relevant section যথেষ্ট:</p>
+    <pre class="example">Employees receive 20 days of annual leave per year.</pre>
+
+    <p>তাই:</p>
+    <div class="fig">
+      <pre class="mermaid">
+flowchart TD
+    A["Large Document"] --> B["Smaller Chunks"]
+    B --> C["Retrieve Relevant Chunk"]
+    C --> D["Send Relevant Context to LLM"]
+      </pre>
+      <div class="fig-cap"><b>FIG 9.1</b> — বড় document থেকে শুধু relevant chunk পাঠানো হয়।</div>
+    </div>
+    <p>খারাপ chunking হলে retrieval ভালো হলেও relevant context পাওয়া নাও যেতে পারে।</p>
+  </section>
+
+  <!-- ============ SECTION 10 ============ -->
+  <section class="section" id="s10">
+    <div class="section-head">
+      <div class="num">10</div>
+      <div><span class="section-kicker">Strategies</span><h2>Chunking Strategies</h2></div>
+    </div>
+    <p class="lead">চারটি basic chunking strategy বোঝা গুরুত্বপূর্ণ:</p>
+    <div class="card">
+      <ol>
+        <li>Fixed-size Chunking</li>
+        <li>Overlapping Chunking</li>
+        <li>Semantic Chunking</li>
+        <li>Hierarchical Chunking</li>
+      </ol>
+    </div>
+
+    <h3 class="subhead">10.1 &nbsp;Fixed-size Chunking</h3>
+    <p>Fixed-size chunking-এ নির্দিষ্ট size অনুযায়ী document ভাগ করা হয়। Example: <code>Chunk Size = 500 tokens</code></p>
+    <div class="fig">
+      <pre class="mermaid">
+flowchart TD
+    D["Document"] --> C1["Chunk 1 - 500 tokens"]
+    D --> C2["Chunk 2 - 500 tokens"]
+    D --> C3["Chunk 3 - 500 tokens"]
+    D --> C4["Chunk 4 - 500 tokens"]
+      </pre>
+      <div class="fig-cap"><b>FIG 10.1</b> — Fixed-size chunking।</div>
+    </div>
+    <div class="compare">
+      <div class="card good"><h4>সুবিধা</h4><ul>
+        <li>Implement করা সহজ</li><li>Predictable</li><li>Size control করা সহজ</li>
+      </ul></div>
+      <div class="card bad"><h4>সমস্যা</h4><p style="margin:0">Sentence বা concept মাঝখানে split হয়ে যেতে পারে।</p></div>
+    </div>
+    <pre class="example">Chunk 1:
+Employees are entitled to 20 days of annual
+
+Chunk 2:
+leave per year...</pre>
+    <p>এখানে একটি complete idea দুইটি chunk-এ ভাগ হয়ে গেছে।</p>
+
+    <h3 class="subhead">10.2 &nbsp;Overlapping Chunks</h3>
+    <p>Chunk boundary problem কমানোর জন্য overlapping chunks ব্যবহার করা যায়।</p>
+    <pre class="example">Chunk 1 = Token 1–500
+Chunk 2 = Token 400–900
+Chunk 3 = Token 800–1300</pre>
+    <p>এখানে neighbouring chunks-এর মধ্যে কিছু অংশ overlap করে:</p>
+    <pre class="example">Chunk 1
+[--------------------]
+
+          Chunk 2
+          [--------------------]
+
+                    Chunk 3
+                    [--------------------]</pre>
+    <div class="compare">
+      <div class="card good"><h4>সুবিধা</h4><ul>
+        <li>Boundary information preserve করতে সাহায্য করে</li>
+        <li>Sentence/context split হওয়ার সম্ভাবনা কমে</li>
+      </ul></div>
+      <div class="card bad"><h4>সমস্যা</h4><ul>
+        <li>বেশি storage প্রয়োজন</li><li>বেশি embeddings তৈরি হয়</li>
+        <li>Processing cost বাড়তে পারে</li><li>Duplicate information retrieval হতে পারে</li>
+      </ul></div>
+    </div>
+
+    <h3 class="subhead">10.3 &nbsp;Semantic Chunking</h3>
+    <p>Semantic chunking token count-এর পরিবর্তে meaning বা logical structure অনুযায়ী document ভাগ করে।</p>
+    <div class="fig">
+      <pre class="mermaid">
+flowchart TD
+    D["Document"] --> S1["Company Overview"]
+    D --> S2["Leave Policy"]
+    D --> S3["Salary Policy"]
+    D --> S4["Promotion Policy"]
+    D --> S5["Termination Policy"]
+      </pre>
+      <div class="fig-cap"><b>FIG 10.2</b> — Meaning অনুযায়ী section-ভিত্তিক chunking।</div>
+    </div>
+    <div class="compare">
+      <div class="card good"><h4>সুবিধা</h4><ul>
+        <li>Meaning preserve করা সহজ</li><li>Context বেশি coherent হয়</li>
+        <li>Structured documents-এর জন্য useful</li>
+      </ul></div>
+      <div class="card bad"><h4>সমস্যা</h4><ul>
+        <li>Implementation বেশি complex</li>
+        <li>Semantic boundary নির্ধারণের জন্য অতিরিক্ত logic প্রয়োজন</li>
+      </ul></div>
+    </div>
+
+    <h3 class="subhead">10.4 &nbsp;Hierarchical Chunking</h3>
+    <p>Hierarchical chunking document-এর structure বা hierarchy preserve করে।</p>
+    <div class="fig">
+      <pre class="mermaid">
+flowchart TD
+    A["Company Handbook"] --> B["Leave Policy"]
+    B --> C["Annual Leave"]
+    C --> D["Eligibility"]
+      </pre>
+      <div class="fig-cap"><b>FIG 10.3</b> — একটি simple hierarchy।</div>
+    </div>
+    <div class="fig">
+      <pre class="mermaid">
+flowchart TD
+    Doc["Document"] --> Ch1["Chapter 1"]
+    Doc --> Ch2["Chapter 2"]
+    Ch1 --> S11["Section 1.1"]
+    Ch1 --> S12["Section 1.2"]
+    Ch1 --> S13["Section 1.3"]
+    Ch2 --> S21["Section 2.1"]
+    Ch2 --> S22["Section 2.2"]
+      </pre>
+      <div class="fig-cap"><b>FIG 10.4</b> — আরও বড়, multi-level structure।</div>
+    </div>
+    <p>এই hierarchy metadata বা context হিসেবে preserve করা যেতে পারে। এটি complex বা highly structured documents-এর ক্ষেত্রে useful।</p>
+  </section>
+
+  <!-- ============ SECTION 11 ============ -->
+  <section class="section" id="s11">
+    <div class="section-head">
+      <div class="num">11</div>
+      <div><span class="section-kicker">Step 4</span><h2>Embedding</h2></div>
+    </div>
+    <p class="lead">Embedding হলো text-এর semantic meaning-কে একটি numerical vector representation-এ রূপান্তর করার প্রক্রিয়া।</p>
+    <p>Example:</p>
+    <pre class="example">"How many annual leave days do employees get?"</pre>
+    <p>Conceptually এর embedding হতে পারে:</p>
+    <pre class="example">[0.021, -0.183, 0.742, 0.091, ...]</pre>
+    <p>আরেকটি semantically similar sentence:</p>
+    <pre class="example">"Employees receive 20 vacation days per year."</pre>
+    <p>এর vector-ও একই ধরনের semantic space-এ relatively কাছাকাছি হতে পারে। মূল উদ্দেশ্য হলো exact keyword match নয়, বরং <strong>semantic similarity</strong> ব্যবহার করে relevant information খুঁজে বের করা।</p>
+  </section>
+
+  <!-- ============ SECTION 12 ============ -->
+  <section class="section" id="s12">
+    <div class="section-head">
+      <div class="num">12</div>
+      <div><span class="section-kicker">Why It Matters</span><h2>Embedding কেন প্রয়োজন?</h2></div>
+    </div>
+    <p class="lead">ধরা যাক document-এ লেখা:</p>
+    <div class="callout">"Employees receive 20 vacation days per year."</div>
+    <p>কিন্তু user প্রশ্ন করল:</p>
+    <div class="callout">"How much time off can I take?"</div>
+    <p>এখানে exact word match নেই। তবুও দুইটির meaning কাছাকাছি:</p>
+    <div class="card">
+      <ul><li>vacation</li><li>annual leave</li><li>time off</li><li>holiday</li></ul>
+    </div>
+    <p>Embedding এই semantic relationship capture করতে সাহায্য করে।</p>
+    <div class="fig">
+      <pre class="mermaid">
+flowchart TD
+    DC["Document Chunk"] --> EM1["Embedding Model"]
+    EM1 --> V["Vector"]
+
+    UQ["User Query"] --> EM2["Embedding Model"]
+    EM2 --> QV["Query Vector"]
+
+    QV --> SS["Similarity Search"]
+    V --> SS
+    SS --> RC["Relevant Chunks"]
+      </pre>
+      <div class="fig-cap"><b>FIG 12.1</b> — Document embedding ও query embedding একই vector space-এ compare হয়।</div>
+    </div>
+  </section>
+
+  <!-- ============ SECTION 13 ============ -->
+  <section class="section" id="s13">
+    <div class="section-head">
+      <div class="num">13</div>
+      <div><span class="section-kicker">Storage</span><h2>Vector Storage</h2></div>
+    </div>
+    <p class="lead">Embedding তৈরি করার পরে এগুলো searchable storage-এ রাখা হয়।</p>
+    <p>Common options:</p>
+    <div class="card">
+      <ul>
+        <li>PostgreSQL + pgvector</li><li>Qdrant</li><li>Pinecone</li>
+        <li>Weaviate</li><li>Milvus</li><li>Elasticsearch / OpenSearch</li><li>FAISS</li>
+      </ul>
+    </div>
+    <p>একটি record conceptually এমন হতে পারে:</p>
+    <pre class="example">{
+  "id": "chunk_102",
+  "embedding": [0.12, -0.43, 0.88],
+  "text": "Employees receive 20 days...",
+  "metadata": {
+    "document": "employee-handbook.pdf",
+    "page": 12,
+    "department": "HR"
+  }
+}</pre>
+    <p>এখানে তিনটি বিষয় গুরুত্বপূর্ণ: <strong>Embedding</strong>, <strong>Text</strong>, <strong>Metadata</strong> — embedding search-এর জন্য, original text context তৈরির জন্য এবং metadata filtering/source tracking-এর জন্য ব্যবহার করা যায়।</p>
+  </section>
+
+  <!-- ============ SECTION 14 ============ -->
+  <section class="section" id="s14">
+    <div class="section-head">
+      <div class="num">14</div>
+      <div><span class="section-kicker">Query Pipeline</span><h2>Retrieval</h2></div>
+    </div>
+    <p class="lead">Retrieval হলো user-এর query অনুযায়ী knowledge base থেকে relevant information খুঁজে বের করার প্রক্রিয়া।</p>
+    <div class="fig">
+      <pre class="mermaid">
+flowchart TD
+    A["User Query"] --> B["Query Embedding"]
+    B --> C["Search Vector Store"]
+    C --> D["Similarity Comparison"]
+    D --> E["Rank Results"]
+    E --> F["Top-K Relevant Chunks"]
+      </pre>
+      <div class="fig-cap"><b>FIG 14.1</b> — Retrieval pipeline।</div>
+    </div>
+    <p>Example ranking:</p>
+    <pre class="example">1. Chunk 102 → 0.94
+2. Chunk 88  → 0.91
+3. Chunk 301 → 0.86
+4. Chunk 77  → 0.81
+5. Chunk 410 → 0.79</pre>
+    <p>এখানে similarity score যত বেশি, সাধারণভাবে chunk-টি query-এর সাথে তত বেশি relevant।</p>
+  </section>
+
+  <!-- ============ SECTION 15 ============ -->
+  <section class="section" id="s15">
+    <div class="section-head">
+      <div class="num">15</div>
+      <div><span class="section-kicker">Query Pipeline</span><h2>Top-K Retrieval</h2></div>
+    </div>
+    <p class="lead">Top-K বলতে retrieval-এর পরে কতগুলো relevant result রাখা হবে তা বোঝায়। যদি <code>top_k = 5</code>, তাহলে system 5টি relevant chunk নির্বাচন করতে পারে।</p>
+    <div class="fig">
+      <pre class="mermaid">
+flowchart TD
+    Q["Query"] --> R["Retriever"]
+    R --> C1["Chunk 102"]
+    R --> C2["Chunk 88"]
+    R --> C3["Chunk 301"]
+    R --> C4["Chunk 77"]
+    R --> C5["Chunk 410"]
+      </pre>
+      <div class="fig-cap"><b>FIG 15.1</b> — top_k = 5 হলে Retriever পাঁচটি chunk রিটার্ন করে।</div>
+    </div>
+    <p>তবে <code>top_k</code> সবসময় একটি fixed universal value নয়। Dataset, chunk size, question type এবং context window অনুযায়ী এটি tune করতে হয়।</p>
+  </section>
+
+  <!-- ============ SECTION 16 ============ -->
+  <section class="section" id="s16">
+    <div class="section-head">
+      <div class="num">16</div>
+      <div><span class="section-kicker">Step 5</span><h2>Augmentation</h2></div>
+    </div>
+    <p class="lead">Retrieval-এর মাধ্যমে relevant information পাওয়ার পরে সেই information LLM-এর input-এর সাথে যুক্ত করা হয়।</p>
+    <pre class="example">System Instruction:
+Answer using the provided context.
+
+Context:
+Employees are entitled to 20 days of annual leave per year.
+
+Question:
+How many annual leave days do employees get?</pre>
+    <div class="fig">
+      <pre class="mermaid">
+flowchart TD
+    A["User Question"] --> D["Prompt"]
+    B["Retrieved Context"] --> D
+    C["System Instructions"] --> D
+      </pre>
+      <div class="fig-cap"><b>FIG 16.1</b> — তিনটি অংশ মিলে একটি Prompt তৈরি হয় — এটাই Augmentation stage।</div>
+    </div>
+  </section>
+
+  <!-- ============ SECTION 17 ============ -->
+  <section class="section" id="s17">
+    <div class="section-head">
+      <div class="num">17</div>
+      <div><span class="section-kicker">Step 6</span><h2>Generation</h2></div>
+    </div>
+    <p class="lead">Generation হলো LLM-এর মাধ্যমে final answer তৈরি করার ধাপ।</p>
+    <div class="fig">
+      <pre class="mermaid">
+flowchart TD
+    A["Instructions"] --> D["LLM Input"]
+    B["Retrieved Context"] --> D
+    C["User Question"] --> D
+      </pre>
+      <div class="fig-cap"><b>FIG 17.1</b> — LLM input-এর তিনটি অংশ।</div>
+    </div>
+    <p>Output:</p>
+    <div class="callout">"Employees are entitled to 20 days of annual leave per year."</div>
+    <p>এখানে LLM-এর দায়িত্ব হলো retrieved information ব্যবহার করে coherent এবং useful natural-language response তৈরি করা।</p>
+  </section>
+
+  <!-- ============ SECTION 18 ============ -->
+  <section class="section" id="s18">
+    <div class="section-head">
+      <div class="num">18</div>
+      <div><span class="section-kicker">Perspective</span><h2>RAG বনাম Fine-Tuning</h2></div>
+    </div>
+    <p class="lead">RAG এবং Fine-Tuning একই কাজ করে না। দুটির উদ্দেশ্য আলাদা।</p>
+
+    <div class="compare">
+      <div class="card">
+        <span class="tag">18.1 — RAG</span>
+        <p style="margin-bottom:12px">RAG-এ knowledge model-এর বাইরে থাকে।</p>
+        <div class="fig" style="margin:0 0 14px">
+          <pre class="mermaid">
+flowchart TD
+    A["External Knowledge"] --> B["Retrieve"]
+    B --> C["Context"]
+    C --> D["LLM"]
+    D --> E["Answer"]
+          </pre>
+        </div>
+        <h4 class="microhead">RAG সাধারণত useful যখন</h4>
+        <ul>
+          <li>Private documents নিয়ে কাজ করতে হবে</li>
+          <li>Data frequently পরিবর্তিত হয়</li>
+          <li>Company knowledge base তৈরি করতে হবে</li>
+          <li>Source/citation প্রয়োজন</li>
+          <li>Large document collection থেকে answer দিতে হবে</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <span class="tag gold">18.2 — Fine-Tuning</span>
+        <p style="margin-bottom:12px">Fine-tuning-এর মাধ্যমে model-কে additional training data দিয়ে তার behavior বা task performance পরিবর্তন করা হয়।</p>
+        <div class="fig" style="margin:0 0 14px">
+          <pre class="mermaid">
+flowchart TD
+    A["Base Model"] --> B["Additional Training"]
+    B --> C["Fine-Tuned Model"]
+          </pre>
+        </div>
+        <h4 class="microhead">Fine-tuning useful হতে পারে</h4>
+        <ul>
+          <li>Specific response style</li>
+          <li>Specific behavior</li>
+          <li>Specialized task</li>
+          <li>Domain-specific patterns</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SECTION 19 ============ -->
+  <section class="section" id="s19">
+    <div class="section-head">
+      <div class="num">19</div>
+      <div><span class="section-kicker">Reflection</span><h2>আমি RAG সম্পর্কে যা বুঝেছি</h2></div>
+    </div>
+    <p class="lead">RAG শুধুমাত্র PDF upload করে LLM-কে প্রশ্ন করার ব্যবস্থা নয়। এটি একটি complete information retrieval এবং generation pipeline।</p>
+
+    <div class="card" style="border-left:3px solid var(--accent)">
+      <h4 class="microhead">আমার বোঝাপড়া অনুযায়ী</h4>
+      <ol>
+        <li>Knowledge source সংগ্রহ করা হয়।</li>
+        <li>Document parse করে usable content তৈরি করা হয়।</li>
+        <li>বড় document ছোট meaningful chunk-এ ভাগ করা হয়।</li>
+        <li>প্রতিটি chunk-এর embedding তৈরি করা হয়।</li>
+        <li>Embedding, text এবং metadata searchable storage-এ রাখা হয়।</li>
+        <li>User-এর question process করা হয়।</li>
+        <li>Question-এর জন্য relevant information retrieve করা হয়।</li>
+        <li>Retrieved information context হিসেবে LLM-এর input-এর সাথে যুক্ত করা হয়।</li>
+        <li>LLM context এবং question ব্যবহার করে answer generate করে।</li>
+        <li>প্রয়োজন হলে source information-ও response-এর সাথে দেখানো যায়।</li>
+      </ol>
+    </div>
+
+    <footer class="endmark">
+      <span>RAG Engineering Notebook</span>
+      <span>End of Report</span>
+    </footer>
+  </section>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.min.js"></script>
+<script>
+  mermaid.initialize({
+    startOnLoad: true,
+    theme: "default",
+    securityLevel: "loose",
+    flowchart: { rankSpacing: 32, nodeSpacing: 20, padding: 8, curve: "basis" }
+  });
+</script>
+</body>
+</html>
