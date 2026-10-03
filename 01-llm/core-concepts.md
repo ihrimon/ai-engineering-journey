@@ -104,7 +104,7 @@ Billing হয় token এ — token কমালে সরাসরি খর�
 - [ ] Token counter script (English vs Bangla comparison)
 
 ### LinkedIn Post
-- [ ] "বাংলায় AI ব্যবহার কেন English এর চেয়ে বেশি খরচের?" — token count এর তুলনা দিয়ে
+- [x] "বাংলায় AI ব্যবহার কেন English এর চেয়ে বেশি খরচের?" — token count এর তুলনা দিয়ে ✅ posted
 
 ---
 
