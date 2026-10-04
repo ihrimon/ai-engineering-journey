@@ -94,8 +94,8 @@ ai-engineering-journey/
 
 - [x] **Core Concepts** — tokens, tokenization, context windows, token cost, input vs output tokens, latency, capabilities, limitations → [📝 বাংলা Learning Log](01-llm/core-concepts.md)
 - [x] Model Families — GPT, Claude, Gemini, Llama, Mistral, Qwen, DeepSeek → [📝 বাংলা Learning Log](01-llm/model-families.md)
-- [ ] Sampling — temperature, top-p, top-k, penalties, determinism → [📝 বাংলা Learning Log](01-llm/sampling.md)
-- [ ] Generation — streaming, structured outputs, function calling, tool use
+- [x] Sampling — temperature, top-p, top-k, penalties, determinism → [📝 বাংলা Learning Log](01-llm/sampling.md)
+- [ ] Generation — streaming, structured outputs, function calling, tool use → [📝 বাংলা Learning Log](01-llm/generation.md)
 - [ ] Multimodal Inputs, Embeddings, Rerankers, Reasoning models
 - [ ] 🛠️ Project: **LLM Model Comparison Lab**
 

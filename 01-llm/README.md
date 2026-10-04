@@ -40,27 +40,29 @@ Understand:
 - [x] [Context window differences](model-families.md#context-window-differences)
 - [x] [Open-weight vs closed models](model-families.md#open-weight-vs-closed)
 
-## Sampling
+## Sampling ✅
 
 📝 Learning Log (বাংলা): [sampling.md](sampling.md)
 
-- [ ] [Temperature](sampling.md#temperature)
-- [ ] [Top-p](sampling.md#top-p)
-- [ ] [Top-k](sampling.md#top-k)
-- [ ] [Frequency penalty](sampling.md#frequency-penalty)
-- [ ] [Presence penalty](sampling.md#presence-penalty)
-- [ ] [Determinism](sampling.md#determinism)
-- [ ] [Sampling experiments](sampling.md#sampling-experiments)
+- [x] [Temperature](sampling.md#temperature)
+- [x] [Top-p](sampling.md#top-p)
+- [x] [Top-k](sampling.md#top-k)
+- [x] [Frequency penalty](sampling.md#frequency-penalty)
+- [x] [Presence penalty](sampling.md#presence-penalty)
+- [x] [Determinism](sampling.md#determinism)
+- [x] [Sampling experiments](sampling.md#sampling-experiments)
 
 ## Generation
 
-- [ ] Streaming
-- [ ] Non-streaming
-- [ ] Structured outputs
-- [ ] JSON generation
-- [ ] Schema-constrained generation
-- [ ] Function calling
-- [ ] Tool use
+📝 Learning Log (বাংলা): [generation.md](generation.md)
+
+- [ ] [Streaming](generation.md#streaming)
+- [ ] [Non-streaming](generation.md#non-streaming)
+- [ ] [Structured outputs](generation.md#structured-outputs)
+- [ ] [JSON generation](generation.md#json-generation)
+- [ ] [Schema-constrained generation](generation.md#schema-constrained-generation)
+- [ ] [Function calling](generation.md#function-calling)
+- [ ] [Tool use](generation.md#tool-use)
 
 ## Multimodal Inputs
 
