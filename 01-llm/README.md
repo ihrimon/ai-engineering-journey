@@ -17,38 +17,40 @@ How LLMs actually behave as a system component: tokens, context, cost, latency, 
 
 > Transformers, attention, and embeddings deep dive (English) → [02-prompting/README.md](../02-prompting/README.md)
 
-## Model Families
+## Model Families ✅
 
 📝 Learning Log (বাংলা): [model-families.md](model-families.md)
 
 Study and compare:
 
-- [ ] [GPT](model-families.md#gpt)
-- [ ] [Claude](model-families.md#claude)
-- [ ] [Gemini](model-families.md#gemini)
-- [ ] [Llama](model-families.md#llama)
-- [ ] [Mistral](model-families.md#mistral)
-- [ ] [Qwen](model-families.md#qwen)
-- [ ] [DeepSeek](model-families.md#deepseek)
+- [x] [GPT](model-families.md#gpt)
+- [x] [Claude](model-families.md#claude)
+- [x] [Gemini](model-families.md#gemini)
+- [x] [Llama](model-families.md#llama)
+- [x] [Mistral](model-families.md#mistral)
+- [x] [Qwen](model-families.md#qwen)
+- [x] [DeepSeek](model-families.md#deepseek)
 
 Understand:
 
-- [ ] [Model architecture differences](model-families.md#architecture-differences)
-- [ ] [Capability trade-offs](model-families.md#capability-trade-offs)
-- [ ] [Cost trade-offs](model-families.md#cost-trade-offs)
-- [ ] [Latency trade-offs](model-families.md#latency-trade-offs)
-- [ ] [Context window differences](model-families.md#context-window-differences)
-- [ ] [Open-weight vs closed models](model-families.md#open-weight-vs-closed)
+- [x] [Model architecture differences](model-families.md#architecture-differences)
+- [x] [Capability trade-offs](model-families.md#capability-trade-offs)
+- [x] [Cost trade-offs](model-families.md#cost-trade-offs)
+- [x] [Latency trade-offs](model-families.md#latency-trade-offs)
+- [x] [Context window differences](model-families.md#context-window-differences)
+- [x] [Open-weight vs closed models](model-families.md#open-weight-vs-closed)
 
 ## Sampling
 
-- [ ] Temperature
-- [ ] Top-p
-- [ ] Top-k
-- [ ] Frequency penalty
-- [ ] Presence penalty
-- [ ] Determinism
-- [ ] Sampling experiments
+📝 Learning Log (বাংলা): [sampling.md](sampling.md)
+
+- [ ] [Temperature](sampling.md#temperature)
+- [ ] [Top-p](sampling.md#top-p)
+- [ ] [Top-k](sampling.md#top-k)
+- [ ] [Frequency penalty](sampling.md#frequency-penalty)
+- [ ] [Presence penalty](sampling.md#presence-penalty)
+- [ ] [Determinism](sampling.md#determinism)
+- [ ] [Sampling experiments](sampling.md#sampling-experiments)
 
 ## Generation
 

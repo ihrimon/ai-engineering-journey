@@ -93,8 +93,8 @@ ai-engineering-journey/
 ## Phase 1 — LLM Fundamentals
 
 - [x] **Core Concepts** — tokens, tokenization, context windows, token cost, input vs output tokens, latency, capabilities, limitations → [📝 বাংলা Learning Log](01-llm/core-concepts.md)
-- [ ] Model Families — GPT, Claude, Gemini, Llama, Mistral, Qwen, DeepSeek → [📝 বাংলা Learning Log](01-llm/model-families.md)
-- [ ] Sampling — temperature, top-p, top-k, penalties, determinism
+- [x] Model Families — GPT, Claude, Gemini, Llama, Mistral, Qwen, DeepSeek → [📝 বাংলা Learning Log](01-llm/model-families.md)
+- [ ] Sampling — temperature, top-p, top-k, penalties, determinism → [📝 বাংলা Learning Log](01-llm/sampling.md)
 - [ ] Generation — streaming, structured outputs, function calling, tool use
 - [ ] Multimodal Inputs, Embeddings, Rerankers, Reasoning models
 - [ ] 🛠️ Project: **LLM Model Comparison Lab**
