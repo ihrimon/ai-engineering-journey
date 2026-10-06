@@ -52,27 +52,29 @@ Understand:
 - [x] [Determinism](sampling.md#determinism)
 - [x] [Sampling experiments](sampling.md#sampling-experiments)
 
-## Generation
+## Generation ✅
 
 📝 Learning Log (বাংলা): [generation.md](generation.md)
 
-- [ ] [Streaming](generation.md#streaming)
-- [ ] [Non-streaming](generation.md#non-streaming)
-- [ ] [Structured outputs](generation.md#structured-outputs)
-- [ ] [JSON generation](generation.md#json-generation)
-- [ ] [Schema-constrained generation](generation.md#schema-constrained-generation)
-- [ ] [Function calling](generation.md#function-calling)
-- [ ] [Tool use](generation.md#tool-use)
+- [x] [Streaming](generation.md#streaming)
+- [x] [Non-streaming](generation.md#non-streaming)
+- [x] [Structured outputs](generation.md#structured-outputs)
+- [x] [JSON generation](generation.md#json-generation)
+- [x] [Schema-constrained generation](generation.md#schema-constrained-generation)
+- [x] [Function calling](generation.md#function-calling)
+- [x] [Tool use](generation.md#tool-use)
 
 ## Multimodal Inputs
 
-- [ ] Vision
-- [ ] Images
-- [ ] Audio
-- [ ] PDFs
-- [ ] Documents
-- [ ] Tables
-- [ ] Charts
+📝 Learning Log (বাংলা): [multimodal-inputs.md](multimodal-inputs.md)
+
+- [ ] [Vision](multimodal-inputs.md#vision)
+- [ ] [Images](multimodal-inputs.md#images)
+- [ ] [Audio](multimodal-inputs.md#audio)
+- [ ] [PDFs](multimodal-inputs.md#pdfs)
+- [ ] [Documents](multimodal-inputs.md#documents)
+- [ ] [Tables](multimodal-inputs.md#tables)
+- [ ] [Charts](multimodal-inputs.md#charts)
 
 ## Embeddings
 
