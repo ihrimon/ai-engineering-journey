@@ -87,23 +87,25 @@ Understand:
 - [x] [Embedding dimensions](embeddings.md#embedding-dimensions)
 - [x] [Embedding model selection](embeddings.md#embedding-model-selection)
 
-## Rerankers
+## Rerankers ✅
 
 📝 Learning Log (বাংলা): [rerankers.md](rerankers.md)
 
-- [ ] [Why reranking is required](rerankers.md#why-reranking-is-required)
-- [ ] [Cross-encoder concepts](rerankers.md#cross-encoder-concepts)
-- [ ] [Reranking pipeline](rerankers.md#reranking-pipeline)
-- [ ] [Reranker trade-offs](rerankers.md#reranker-trade-offs)
+- [x] [Why reranking is required](rerankers.md#why-reranking-is-required)
+- [x] [Cross-encoder concepts](rerankers.md#cross-encoder-concepts)
+- [x] [Reranking pipeline](rerankers.md#reranking-pipeline)
+- [x] [Reranker trade-offs](rerankers.md#reranker-trade-offs)
 
 ## Reasoning
 
-- [ ] Standard models
-- [ ] Reasoning models
-- [ ] Extended thinking
-- [ ] Reasoning token costs
-- [ ] Reasoning vs latency
-- [ ] When reasoning models are useful
+📝 Learning Log (বাংলা): [reasoning.md](reasoning.md)
+
+- [ ] [Standard models](reasoning.md#standard-models)
+- [ ] [Reasoning models](reasoning.md#reasoning-models)
+- [ ] [Extended thinking](reasoning.md#extended-thinking)
+- [ ] [Reasoning token costs](reasoning.md#reasoning-token-costs)
+- [ ] [Reasoning vs latency](reasoning.md#reasoning-vs-latency)
+- [ ] [When reasoning models are useful](reasoning.md#when-reasoning-models-are-useful)
 
 ## Practical Project — LLM Model Comparison Lab
 

@@ -98,8 +98,8 @@ ai-engineering-journey/
 - [x] Generation — streaming, structured outputs, function calling, tool use → [📝 বাংলা Learning Log](01-llm/generation.md)
 - [x] Multimodal Inputs — vision, images, audio, PDFs, documents, tables, charts → [📝 বাংলা Learning Log](01-llm/multimodal-inputs.md)
 - [x] Embeddings — vectors, similarity, cosine, dimensions, model selection → [📝 বাংলা Learning Log](01-llm/embeddings.md)
-- [ ] Rerankers — why rerank, cross-encoder, pipeline, trade-offs → [📝 বাংলা Learning Log](01-llm/rerankers.md)
-- [ ] Reasoning models
+- [x] Rerankers — why rerank, cross-encoder, pipeline, trade-offs → [📝 বাংলা Learning Log](01-llm/rerankers.md)
+- [ ] Reasoning — standard vs reasoning models, thinking control, token cost, latency → [📝 বাংলা Learning Log](01-llm/reasoning.md)
 - [ ] 🛠️ Project: **LLM Model Comparison Lab**
 
 [📖 Deep dive](01-llm/README.md)
