@@ -76,23 +76,25 @@ Understand:
 - [x] [Tables](multimodal-inputs.md#tables)
 - [x] [Charts](multimodal-inputs.md#charts)
 
-## Embeddings
+## Embeddings ✅
 
 📝 Learning Log (বাংলা): [embeddings.md](embeddings.md)
 
-- [ ] [Embedding fundamentals](embeddings.md#embedding-fundamentals)
-- [ ] [Vector representations](embeddings.md#vector-representations)
-- [ ] [Similarity](embeddings.md#similarity)
-- [ ] [Cosine similarity](embeddings.md#cosine-similarity)
-- [ ] [Embedding dimensions](embeddings.md#embedding-dimensions)
-- [ ] [Embedding model selection](embeddings.md#embedding-model-selection)
+- [x] [Embedding fundamentals](embeddings.md#embedding-fundamentals)
+- [x] [Vector representations](embeddings.md#vector-representations)
+- [x] [Similarity](embeddings.md#similarity)
+- [x] [Cosine similarity](embeddings.md#cosine-similarity)
+- [x] [Embedding dimensions](embeddings.md#embedding-dimensions)
+- [x] [Embedding model selection](embeddings.md#embedding-model-selection)
 
 ## Rerankers
 
-- [ ] Why reranking is required
-- [ ] Cross-encoder concepts
-- [ ] Reranking pipeline
-- [ ] Reranker trade-offs
+📝 Learning Log (বাংলা): [rerankers.md](rerankers.md)
+
+- [ ] [Why reranking is required](rerankers.md#why-reranking-is-required)
+- [ ] [Cross-encoder concepts](rerankers.md#cross-encoder-concepts)
+- [ ] [Reranking pipeline](rerankers.md#reranking-pipeline)
+- [ ] [Reranker trade-offs](rerankers.md#reranker-trade-offs)
 
 ## Reasoning
 

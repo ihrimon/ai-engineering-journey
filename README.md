@@ -97,8 +97,9 @@ ai-engineering-journey/
 - [x] Sampling — temperature, top-p, top-k, penalties, determinism → [📝 বাংলা Learning Log](01-llm/sampling.md)
 - [x] Generation — streaming, structured outputs, function calling, tool use → [📝 বাংলা Learning Log](01-llm/generation.md)
 - [x] Multimodal Inputs — vision, images, audio, PDFs, documents, tables, charts → [📝 বাংলা Learning Log](01-llm/multimodal-inputs.md)
-- [ ] Embeddings — vectors, similarity, cosine, dimensions, model selection → [📝 বাংলা Learning Log](01-llm/embeddings.md)
-- [ ] Rerankers, Reasoning models
+- [x] Embeddings — vectors, similarity, cosine, dimensions, model selection → [📝 বাংলা Learning Log](01-llm/embeddings.md)
+- [ ] Rerankers — why rerank, cross-encoder, pipeline, trade-offs → [📝 বাংলা Learning Log](01-llm/rerankers.md)
+- [ ] Reasoning models
 - [ ] 🛠️ Project: **LLM Model Comparison Lab**
 
 [📖 Deep dive](01-llm/README.md)
