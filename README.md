@@ -96,8 +96,9 @@ ai-engineering-journey/
 - [x] Model Families — GPT, Claude, Gemini, Llama, Mistral, Qwen, DeepSeek → [📝 বাংলা Learning Log](01-llm/model-families.md)
 - [x] Sampling — temperature, top-p, top-k, penalties, determinism → [📝 বাংলা Learning Log](01-llm/sampling.md)
 - [x] Generation — streaming, structured outputs, function calling, tool use → [📝 বাংলা Learning Log](01-llm/generation.md)
-- [ ] Multimodal Inputs — vision, images, audio, PDFs, documents, tables, charts → [📝 বাংলা Learning Log](01-llm/multimodal-inputs.md)
-- [ ] Embeddings, Rerankers, Reasoning models
+- [x] Multimodal Inputs — vision, images, audio, PDFs, documents, tables, charts → [📝 বাংলা Learning Log](01-llm/multimodal-inputs.md)
+- [ ] Embeddings — vectors, similarity, cosine, dimensions, model selection → [📝 বাংলা Learning Log](01-llm/embeddings.md)
+- [ ] Rerankers, Reasoning models
 - [ ] 🛠️ Project: **LLM Model Comparison Lab**
 
 [📖 Deep dive](01-llm/README.md)

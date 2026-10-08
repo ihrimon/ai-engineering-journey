@@ -64,26 +64,28 @@ Understand:
 - [x] [Function calling](generation.md#function-calling)
 - [x] [Tool use](generation.md#tool-use)
 
-## Multimodal Inputs
+## Multimodal Inputs ✅
 
 📝 Learning Log (বাংলা): [multimodal-inputs.md](multimodal-inputs.md)
 
-- [ ] [Vision](multimodal-inputs.md#vision)
-- [ ] [Images](multimodal-inputs.md#images)
-- [ ] [Audio](multimodal-inputs.md#audio)
-- [ ] [PDFs](multimodal-inputs.md#pdfs)
-- [ ] [Documents](multimodal-inputs.md#documents)
-- [ ] [Tables](multimodal-inputs.md#tables)
-- [ ] [Charts](multimodal-inputs.md#charts)
+- [x] [Vision](multimodal-inputs.md#vision)
+- [x] [Images](multimodal-inputs.md#images)
+- [x] [Audio](multimodal-inputs.md#audio)
+- [x] [PDFs](multimodal-inputs.md#pdfs)
+- [x] [Documents](multimodal-inputs.md#documents)
+- [x] [Tables](multimodal-inputs.md#tables)
+- [x] [Charts](multimodal-inputs.md#charts)
 
 ## Embeddings
 
-- [ ] Embedding fundamentals
-- [ ] Vector representations
-- [ ] Similarity
-- [ ] Cosine similarity
-- [ ] Embedding dimensions
-- [ ] Embedding model selection
+📝 Learning Log (বাংলা): [embeddings.md](embeddings.md)
+
+- [ ] [Embedding fundamentals](embeddings.md#embedding-fundamentals)
+- [ ] [Vector representations](embeddings.md#vector-representations)
+- [ ] [Similarity](embeddings.md#similarity)
+- [ ] [Cosine similarity](embeddings.md#cosine-similarity)
+- [ ] [Embedding dimensions](embeddings.md#embedding-dimensions)
+- [ ] [Embedding model selection](embeddings.md#embedding-model-selection)
 
 ## Rerankers
 
