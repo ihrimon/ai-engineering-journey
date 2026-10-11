@@ -22,7 +22,7 @@ ai-engineering-journey/
 │
 ├── 00-software-engineering/    # Phase 0
 ├── 01-llm/                     # Phase 1
-├── 02-prompting/               # Phase 2
+├── 02-prompt-engineering/      # Phase 2
 ├── 03-context/                 # Phase 3
 ├── 04-rag/                     # Phase 4
 ├── 05-agents/                  # Phase 5
@@ -58,7 +58,7 @@ ai-engineering-journey/
 |---|---|---|---|
 | 0 | [Software Engineering Foundation](#phase-0) | [00-software-engineering](00-software-engineering/README.md) | ✅ Core done |
 | 1 | [LLM Fundamentals](#phase-1) | [01-llm](01-llm/README.md) | 🟡 In progress |
-| 2 | [Prompt Engineering](#phase-2) | [02-prompting](02-prompting/README.md) | 🟡 In progress |
+| 2 | [Prompt Engineering](#phase-2) | [02-prompt-engineering](02-prompt-engineering/README.md) | 🟡 In progress |
 | 3 | [Context Engineering](#phase-3) | [03-context](03-context/README.md) | ⬜ |
 | — | [Python Learning Track](#python) | [python](python/README.md) | ⬜ |
 | 4 | [RAG & Knowledge Systems](#phase-4) | [04-rag](04-rag/README.md) | ⬜ |
@@ -108,14 +108,14 @@ ai-engineering-journey/
 
 ## Phase 2 — Prompt Engineering
 
-- [ ] Prompt architecture — system/user/assistant, instruction hierarchy
-- [ ] Techniques — zero/few-shot, role prompting, CoT concepts, ReAct, reflection
-- [ ] Structure — XML, Markdown, delimiters, output contracts
-- [ ] Engineering — templates, versioning, output parsers, prompt testing
-- [ ] Security — prompt injection & defense
+- [ ] **Prompt Architecture** — system prompts, user prompts, assistant messages, instruction hierarchy, prompt composition → [📝 বাংলা Learning Log](02-prompt-engineering/prompt-architecture.md)
+- [ ] Techniques — zero-shot, few-shot, role prompting, persona, CoT concepts, ReAct, reflection, self-correction, structured reasoning → [📝 বাংলা Learning Log](02-prompt-engineering/techniques.md)
+- [ ] Prompt Structure — XML, Markdown, delimiters, clear instructions, constraints, examples, output contracts → [📝 বাংলা Learning Log](02-prompt-engineering/prompt-structure.md)
+- [ ] Prompt Engineering in Production — templates, variable injection, versioning, output parsers, graceful failure, prompt testing → [📝 বাংলা Learning Log](02-prompt-engineering/prompt-engineering.md)
+- [ ] Security — prompt injection, instruction conflicts, data boundary attacks, indirect injection, defense → [📝 বাংলা Learning Log](02-prompt-engineering/security.md)
 - [ ] 🛠️ Project: **Prompt Evaluation Laboratory**
 
-[📖 Deep dive](02-prompting/README.md) · [🧠 Interview Q&A](02-prompting/interview-qa.md)
+[📖 Deep dive](02-prompt-engineering/README.md) · [🧠 Interview Q&A](02-prompt-engineering/interview-qa.md)
 
 <a id="phase-3"></a>
 
