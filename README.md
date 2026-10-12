@@ -108,8 +108,8 @@ ai-engineering-journey/
 
 ## Phase 2 — Prompt Engineering
 
-- [ ] **Prompt Architecture** — system prompts, user prompts, assistant messages, instruction hierarchy, prompt composition → [📝 বাংলা Learning Log](02-prompt-engineering/prompt-architecture.md)
-- [ ] Techniques — zero-shot, few-shot, role prompting, persona, CoT concepts, ReAct, reflection, self-correction, structured reasoning → [📝 বাংলা Learning Log](02-prompt-engineering/techniques.md)
+- [x] **Prompt Architecture** — system prompts, user prompts, assistant messages, instruction hierarchy, prompt composition → [📝 বাংলা Learning Log](02-prompt-engineering/prompt-architecture.md)
+- [x] Techniques — zero-shot, few-shot, role prompting, persona, CoT concepts, ReAct, reflection, self-correction, structured reasoning → [📝 বাংলা Learning Log](02-prompt-engineering/techniques.md)
 - [ ] Prompt Structure — XML, Markdown, delimiters, clear instructions, constraints, examples, output contracts → [📝 বাংলা Learning Log](02-prompt-engineering/prompt-structure.md)
 - [ ] Prompt Engineering in Production — templates, variable injection, versioning, output parsers, graceful failure, prompt testing → [📝 বাংলা Learning Log](02-prompt-engineering/prompt-engineering.md)
 - [ ] Security — prompt injection, instruction conflicts, data boundary attacks, indirect injection, defense → [📝 বাংলা Learning Log](02-prompt-engineering/security.md)

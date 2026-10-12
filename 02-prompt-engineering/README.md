@@ -2,29 +2,29 @@
 
 How to talk to LLMs reliably as a system component: prompt architecture, prompting techniques, prompt structure, production prompt engineering (templates, versioning, parsing, testing), and prompt security.
 
-## Prompt Architecture
+## Prompt Architecture ✅
 
 📝 Learning Log (বাংলা): [prompt-architecture.md](prompt-architecture.md)
 
-- [ ] [System prompts](prompt-architecture.md#system-prompts)
-- [ ] [User prompts](prompt-architecture.md#user-prompts)
-- [ ] [Assistant messages](prompt-architecture.md#assistant-messages)
-- [ ] [Instruction hierarchy](prompt-architecture.md#instruction-hierarchy)
-- [ ] [Prompt composition](prompt-architecture.md#prompt-composition)
+- [x] [System prompts](prompt-architecture.md#system-prompts)
+- [x] [User prompts](prompt-architecture.md#user-prompts)
+- [x] [Assistant messages](prompt-architecture.md#assistant-messages)
+- [x] [Instruction hierarchy](prompt-architecture.md#instruction-hierarchy)
+- [x] [Prompt composition](prompt-architecture.md#prompt-composition)
 
-## Techniques
+## Techniques ✅
 
 📝 Learning Log (বাংলা): [techniques.md](techniques.md)
 
-- [ ] [Zero-shot](techniques.md#zero-shot)
-- [ ] [Few-shot](techniques.md#few-shot)
-- [ ] [Role prompting](techniques.md#role-prompting)
-- [ ] [Persona](techniques.md#persona)
-- [ ] [Chain-of-thought concepts](techniques.md#chain-of-thought-concepts)
-- [ ] [ReAct prompting](techniques.md#react-prompting)
-- [ ] [Reflection](techniques.md#reflection)
-- [ ] [Self-correction](techniques.md#self-correction)
-- [ ] [Structured reasoning](techniques.md#structured-reasoning)
+- [x] [Zero-shot](techniques.md#zero-shot)
+- [x] [Few-shot](techniques.md#few-shot)
+- [x] [Role prompting](techniques.md#role-prompting)
+- [x] [Persona](techniques.md#persona)
+- [x] [Chain-of-thought concepts](techniques.md#chain-of-thought-concepts)
+- [x] [ReAct prompting](techniques.md#react-prompting)
+- [x] [Reflection](techniques.md#reflection)
+- [x] [Self-correction](techniques.md#self-correction)
+- [x] [Structured reasoning](techniques.md#structured-reasoning)
 
 ## Prompt Structure
 
