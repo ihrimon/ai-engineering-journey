@@ -26,17 +26,17 @@ How to talk to LLMs reliably as a system component: prompt architecture, prompti
 - [x] [Self-correction](techniques.md#self-correction)
 - [x] [Structured reasoning](techniques.md#structured-reasoning)
 
-## Prompt Structure
+## Prompt Structure ✅
 
 📝 Learning Log (বাংলা): [prompt-structure.md](prompt-structure.md)
 
-- [ ] [XML](prompt-structure.md#xml)
-- [ ] [Markdown](prompt-structure.md#markdown)
-- [ ] [Delimiters](prompt-structure.md#delimiters)
-- [ ] [Clear instructions](prompt-structure.md#clear-instructions)
-- [ ] [Constraints](prompt-structure.md#constraints)
-- [ ] [Examples](prompt-structure.md#examples)
-- [ ] [Output contracts](prompt-structure.md#output-contracts)
+- [x] [XML](prompt-structure.md#xml)
+- [x] [Markdown](prompt-structure.md#markdown)
+- [x] [Delimiters](prompt-structure.md#delimiters)
+- [x] [Clear instructions](prompt-structure.md#clear-instructions)
+- [x] [Constraints](prompt-structure.md#constraints)
+- [x] [Examples](prompt-structure.md#examples)
+- [x] [Output contracts](prompt-structure.md#output-contracts)
 
 ## Prompt Engineering in Production
 
