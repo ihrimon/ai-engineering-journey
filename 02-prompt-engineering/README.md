@@ -49,15 +49,15 @@ How to talk to LLMs reliably as a system component: prompt architecture, prompti
 - [x] [Graceful failure](prompt-engineering.md#graceful-failure)
 - [x] [Prompt testing](prompt-engineering.md#prompt-testing)
 
-## Security
+## Security ✅
 
 📝 Learning Log (বাংলা): [security.md](security.md)
 
-- [ ] [Prompt injection](security.md#prompt-injection)
-- [ ] [Instruction conflicts](security.md#instruction-conflicts)
-- [ ] [Data boundary attacks](security.md#data-boundary-attacks)
-- [ ] [Indirect prompt injection](security.md#indirect-prompt-injection)
-- [ ] [Prompt injection defense](security.md#prompt-injection-defense)
+- [x] [Prompt injection](security.md#prompt-injection)
+- [x] [Instruction conflicts](security.md#instruction-conflicts)
+- [x] [Data boundary attacks](security.md#data-boundary-attacks)
+- [x] [Indirect prompt injection](security.md#indirect-prompt-injection)
+- [x] [Prompt injection defense](security.md#prompt-injection-defense)
 
 ## Practical Project — Prompt Evaluation Laboratory
 

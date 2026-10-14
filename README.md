@@ -112,7 +112,7 @@ ai-engineering-journey/
 - [x] Techniques — zero-shot, few-shot, role prompting, persona, CoT concepts, ReAct, reflection, self-correction, structured reasoning → [📝 বাংলা Learning Log](02-prompt-engineering/techniques.md)
 - [x] Prompt Structure — XML, Markdown, delimiters, clear instructions, constraints, examples, output contracts → [📝 বাংলা Learning Log](02-prompt-engineering/prompt-structure.md)
 - [x] Prompt Engineering in Production — templates, variable injection, versioning, output parsers, graceful failure, prompt testing → [📝 বাংলা Learning Log](02-prompt-engineering/prompt-engineering.md)
-- [ ] Security — prompt injection, instruction conflicts, data boundary attacks, indirect injection, defense → [📝 বাংলা Learning Log](02-prompt-engineering/security.md)
+- [x] Security — prompt injection, instruction conflicts, data boundary attacks, indirect injection, defense → [📝 বাংলা Learning Log](02-prompt-engineering/security.md)
 - [ ] 🛠️ Project: **Prompt Evaluation Laboratory**
 
 [📖 Deep dive](02-prompt-engineering/README.md) · [🧠 Interview Q&A](02-prompt-engineering/interview-qa.md)
