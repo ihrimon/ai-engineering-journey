@@ -38,16 +38,16 @@ How to talk to LLMs reliably as a system component: prompt architecture, prompti
 - [x] [Examples](prompt-structure.md#examples)
 - [x] [Output contracts](prompt-structure.md#output-contracts)
 
-## Prompt Engineering in Production
+## Prompt Engineering in Production ✅
 
 📝 Learning Log (বাংলা): [prompt-engineering.md](prompt-engineering.md)
 
-- [ ] [Prompt templates](prompt-engineering.md#prompt-templates)
-- [ ] [Variable injection](prompt-engineering.md#variable-injection)
-- [ ] [Prompt versioning](prompt-engineering.md#prompt-versioning)
-- [ ] [Output parsers](prompt-engineering.md#output-parsers)
-- [ ] [Graceful failure](prompt-engineering.md#graceful-failure)
-- [ ] [Prompt testing](prompt-engineering.md#prompt-testing)
+- [x] [Prompt templates](prompt-engineering.md#prompt-templates)
+- [x] [Variable injection](prompt-engineering.md#variable-injection)
+- [x] [Prompt versioning](prompt-engineering.md#prompt-versioning)
+- [x] [Output parsers](prompt-engineering.md#output-parsers)
+- [x] [Graceful failure](prompt-engineering.md#graceful-failure)
+- [x] [Prompt testing](prompt-engineering.md#prompt-testing)
 
 ## Security
 
